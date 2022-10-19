@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Unique Number Filter</title>
+		<style>
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+			}
+			#input,
+			#output {
+				height: 300px;
+				width: 400px;
+			}
+
+			#clear,
+			#filter {
+				padding: 10px;
+				font-size: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="input"></textarea>
+		<button id="clear">Clear</button>
+		<button id="filter">Filter</button>
+		<textarea id="output"></textarea>
+
+		<script>
+			const INPUT = document.getElementById('input');
+			const OUTPUT = document.getElementById('output');
+			const CLEAR_BTN = document.getElementById('clear');
+			const FILTER_BTN = document.getElementById('filter');
+
+			CLEAR_BTN.addEventListener('click', function() {
+				INPUT.value = '';
+				OUTPUT.value = '';
+			});
+
+			FILTER_BTN.addEventListener('click', function() {
+				OUTPUT.value = Array.from(
+					new Set(
+						INPUT.value.replace(new RegExp('[\r\n]', 'gm'), ',').split(',')
+					)
+				).toString();
+			});
+		</script>
+	</body>
+</html>
